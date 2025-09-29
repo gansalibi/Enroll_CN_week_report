@@ -1,0 +1,16 @@
+services:
+  enroll-cn-week-report:
+    build: .
+    image: enroll-cn-week-report:latest
+    container_name: enroll-cn-week-report
+    restart: "no"
+    working_dir: /app
+    environment:
+      - PYTHONUNBUFFERED=1  # Отключает буферизацию Python
+      - TZ=Europe/Moscow    # Устанавливаем часовой пояс
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+        compress: "true"
