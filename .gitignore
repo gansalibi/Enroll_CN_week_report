@@ -2,15 +2,15 @@
 venv/
 env/
 .venv/
-.env/
+secrets/.env/
 ENV/
 
 # Переменные окружения
-.env
+secrets/.env
 .env.local
 .env.production
 .env.development
-service_account.json
+secrets/service_account.json
 
 # Кэш Python
 __pycache__/

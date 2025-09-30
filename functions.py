@@ -1,15 +1,13 @@
-import os
 from closeio_api import Client
 import gspread
 from gspread.utils import rowcol_to_a1
-from dotenv import load_dotenv
-load_dotenv()
+from env_loader import SECRETS_PATH
+import os
 
-
-SERVICE_ACCOUNT_FILE = os.getenv('SERVICE_ACCOUNT_FILE')
-
+SERVICE_ACCOUNT_FILE = os.path.join(SECRETS_PATH, 'service_account.json')
 gc = gspread.service_account(filename=SERVICE_ACCOUNT_FILE)
-api = Client(os.getenv('CLOSE_API_KEY_MARY'))
+api_key = os.getenv('CLOSE_API_KEY_MARY')
+api = Client(api_key)
 
 
 def get_sheet_range(spread, income_sheet, income_range):

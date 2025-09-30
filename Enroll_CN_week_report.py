@@ -4,7 +4,6 @@
 Рабочая задача в рамках проекта Enroll CN.
 """
 import os
-
 import functions as f
 import pandas as pd
 from datetime import datetime as dt
@@ -56,7 +55,7 @@ def main():
 
             except Exception as e:
                 # Обрабатываем ошибки при запросе к API
-                p.print_error(f'Ошибка при обработке {row["url"]}: {e}')
+                logger.warning(f'Ошибка при обработке {row["url"]}: {e}')
                 error_message = str(e)
                 total_leads = f'error\n{error_message}'
 
@@ -65,12 +64,14 @@ def main():
             report.append(report_row)
 
         # Записываем отчет в Google таблицу
-        f.add_report_to_sheet(
-            spread=spreadsheet_name,
-            sheet='py_weekReport',
-            report=report[1:]
-        )
-        p.print_success('Отчет успешно записан в таблицу')
+        if report:
+            f.add_report_to_sheet(
+                spread=spreadsheet_name,
+                sheet='py_weekReport',
+                report=report[1:]
+            )
+            p.print_success('Отчет успешно записан в таблицу')
+
         return True
 
     except Exception as e:

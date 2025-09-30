@@ -1,11 +1,11 @@
 import os
 from loguru import logger
 from notifiers.logging import NotificationHandler
-from dotenv import load_dotenv
-load_dotenv()
+from env_loader import SECRETS_PATH
+
 
 token = os.getenv("TG_TOKEN")
-chat_id = os.getenv("CHAT_ID")
+chat_id = os.getenv("CHAT_ID_1")
 
 params_chat = {
     "token": token,
