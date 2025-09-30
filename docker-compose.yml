@@ -8,6 +8,8 @@ services:
     environment:
       - PYTHONUNBUFFERED=1  # Отключает буферизацию Python
       - TZ=Europe/Moscow    # Устанавливаем часовой пояс
+    volumes:
+      - /opt/secrets:/secrets:ro
     logging:
       driver: "json-file"
       options:
